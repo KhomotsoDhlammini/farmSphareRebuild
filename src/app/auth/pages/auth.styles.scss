@@ -1,0 +1,27 @@
+.login-bg {
+  background: linear-gradient(#4beb0111, #023414ea), url(../../../assets/images/register.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: blur(4px);
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.register-bg {
+  background-image: linear-gradient(#4beb0111, #023414ea), url(../../../assets/images/login.jpeg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: blur(4px);
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}

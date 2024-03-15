@@ -1,0 +1,83 @@
+<div
+  class="relative w-screen h-screen flex flex-col justify-center items-center"
+>
+  <div class="register-bg"></div>
+
+  <img
+    src="../../../../assets/images/logo.png"
+    alt="logo"
+    class="w-32 h-32 object-cover"
+  />
+
+  <h5 class="font-bold text-3xl mt-20 mb-12">Sign Up</h5>
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    class="flex flex-col px-12 w-full gap-6"
+  >
+    <div
+      class="flex border rounded-[10px] w-full h-[50px] justify-center relative"
+    >
+      <span
+        class="absolute top-[-1.7rem] text-green-200 font-bold left-0 text-sm"
+        >Select your role</span
+      >
+      <select
+        class="bg-white/10 placeholder-white text-white focus:outline-none justify-center align-center w-full h-[50px] px-4"
+        formControlName="role"
+      >
+        <option value="" value="client" disabled selected>
+          Select your role
+        </option>
+        <option value="CONSUMER">Consumer</option>
+        <option value="FARMER">Farmer</option>
+      </select>
+    </div>
+    <div class="flex border rounded-[10px] w-full h-[50px] justify-center">
+      <input
+        type="text"
+        formControlName="username"
+        placeholder="Username"
+        class="bg-white/10 text-white placeholder-white focus:outline-none justify-center align-center w-full h-[50px] px-4"
+      />
+    </div>
+    <div class="flex border rounded-[10px] w-full h-[50px] justify-center">
+      <input
+        type="text"
+        formControlName="phoneNumber"
+        placeholder="Phone"
+        class="bg-white/10 text-white placeholder-white focus:outline-none justify-center align-center w-full h-[50px] px-4"
+      />
+    </div>
+    <div class="flex border rounded-[10px] w-full h-[50px] justify-center">
+      <input
+        type="password"
+        formControlName="password"
+        placeholder="Password"
+        class="bg-white/10 text-white placeholder-white focus:outline-none justify-center align-center w-full h-[50px] px-4"
+      />
+    </div>
+
+    <div class="text-right">
+      <a href="#" class="font-bold text-white"></a>
+    </div>
+
+    <button
+      type="submit"
+      class="w-full h-[50px] shadow-md bg-black disabled:bg-black/50 text-white text-[14px] font-bold py-2 px-4 rounded-[20px] focus:outline-none focus:shadow-outline"
+      [disabled]="!form.valid"
+    >
+      Sign Up
+    </button>
+
+    <div class="text-center text-white">
+      <span
+        >Do you have an account?
+        <a routerLink="/public/login" class="font-bold text-lg"
+          >Sign In</a
+        ></span
+      >
+    </div>
+  </form>
+</div>

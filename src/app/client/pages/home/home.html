@@ -1,0 +1,11 @@
+<div class="p-4 homePage flex flex-col gap-8 relative">
+  <div class="sticky top-0 z-50">
+    <client-filter-farms />
+  </div>
+
+  <div class="flex-1 flex flex-col overflow-y-scroll gap-8 bg-white">
+    <div *ngFor="let farm of farms" class="">
+      <client-farmCard [farm]="farm" />
+    </div>
+  </div>
+</div>

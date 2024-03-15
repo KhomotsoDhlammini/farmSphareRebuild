@@ -1,0 +1,21 @@
+import {CommonModule} from '@angular/common'
+import {Component, Input} from '@angular/core'
+import {NavigateService} from 'src/app/shared/services/navigate.service'
+import {FarmInterface} from 'src/app/shared/types/farm.interface'
+
+@Component({
+  selector: 'farmer-farmCard',
+  templateUrl: './farmCard.html',
+  styleUrls: ['../farmer-ui.scss'],
+  standalone: true,
+  imports: [CommonModule],
+})
+export class FarmCard {
+  @Input() farm!: FarmInterface
+
+  constructor(public navigate: NavigateService) {}
+
+  goTo() {
+    this.navigate.to(`/farmer/farmdetails/${this.farm.farmID}`)
+  }
+}

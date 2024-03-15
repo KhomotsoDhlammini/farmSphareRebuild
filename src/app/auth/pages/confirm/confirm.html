@@ -1,0 +1,46 @@
+<div class="w-screen h-screen relative">
+  <img
+    class="w-full object-cover"
+    src="../../../../assets/images/a3.png"
+    alt=""
+  />
+
+  <img
+    src="../../../../assets/images/a1.png"
+    class="mt-16 h-76 w-full object-cover shadow"
+    alt=""
+  />
+
+  <form class="mt-4 ml-4 text-black dark:text-black">
+    <p id="helper-text-explanation" class="text-xl font-medium">
+      Please enter the four digits verification <br />sent to
+      <u>******5774...</u>
+    </p>
+
+    <div *ngIf="true" class="text-red-500 mt-2 ml-4">
+      Please fill in all required fields.
+    </div>
+
+    <div class="flex object-cover mt-10">
+      <div
+        *ngFor="let input of ['code-1', 'code-2', 'code-3', 'code-4']; let i = index"
+      >
+        <label [for]="input" class="sr-only">{{input}}</label>
+        <input
+          type="number"
+          maxlength="1"
+          [id]="input"
+          class="w-14 h-14 text-lg ml-9 font-extrabold text-center text-black bg-white border border-green-500 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-white dadark:focus:ring-primary-500rk:border-green-500 dark:placeholder-gray-400 dark:text-black dark:focus:border-primary-500"
+          required
+        />
+      </div>
+    </div>
+
+    <button
+      class="w-[330px] h-[50px] ml-10 mt-14 bg-black text-white text-[14px] font-bold py-2 px-4 rounded-[20px] focus:outline-none focus:shadow-outline"
+      type="submit"
+    >
+      Sign Up
+    </button>
+  </form>
+</div>

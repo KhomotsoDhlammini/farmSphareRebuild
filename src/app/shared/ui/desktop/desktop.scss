@@ -1,0 +1,12 @@
+.desktop {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(rgba(0, 128, 0, 0.156), rgba(0, 128, 0, 0.812)),
+    url(../../../../assets/images/register.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

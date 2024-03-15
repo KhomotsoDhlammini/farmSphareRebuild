@@ -1,0 +1,18 @@
+<div
+  class="farmCard w-full h-60 border-2 rounded-2xl shadow-md overflow-hidden relative"
+  (click)=" goTo()"
+>
+  <img
+    [src]="farm.farmImageURL"
+    class="w-full h-full object-cover"
+    [alt]="farm.farmID"
+  />
+  <div
+    class="w-[calc(100%-2rem)] backdrop-blur-md shadow-lg absolute bottom-4 p-2 rounded-2xl border-[1px] border-white/50 z-40 ml-4"
+  >
+    <div class="text-2xl font-bold text-center text-white">
+      {{farm.farmName}}
+    </div>
+    <div class="text-white font-thin text-center">{{farm.farmLocation}}</div>
+  </div>
+</div>
