@@ -4,6 +4,7 @@ import {HomePage} from './pages/home/home'
 import {OrdersPage} from './pages/orders/orders'
 import {NotificationsPage} from './pages/notifications/notifications'
 import { FarmDetailsPage } from './pages/farmDetails/farmDetails'
+import { AddNewFarm } from './pages/addNewFarm/addNewFarm'
 
 export const farmerRoutes: Route[] = [
   {
@@ -25,6 +26,10 @@ export const farmerRoutes: Route[] = [
       {
         path: 'farmdetails/:id',
         component: FarmDetailsPage,
+      },
+      {
+        path: 'addnewfarm',
+        component: AddNewFarm,
       },
     ],
   },
