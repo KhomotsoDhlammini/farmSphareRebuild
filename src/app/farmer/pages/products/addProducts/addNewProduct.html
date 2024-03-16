@@ -1,85 +1,81 @@
-<div class="object-fit">
-
-  <!--farm register image------------------------------------------------>
-  <div style="position: relative; display: inline-block;" class="object-fit ml-2 mr-2">
-    <img src="../../../../assets/images/a4.png" alt="farm-image" class="farm-image w-[32rem] h-[290px] mt-3 " />
-
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#40B93C"
-      class="w-16 h-16 text-white cursor-pointer" style="position: absolute; bottom: -24px; right: 18px;" uploadButton>
-      <path d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="1.5"
-        stroke-linecap="round" stroke-linejoin="round" />
-    </svg>
+<div class="products flex flex-nowrap" *ngIf="userService.getUserSignal()?.role === 'FARMER'"
+  (click)="onAddNewProductPopup()">
+  <div class="inline-block">
+    <div
+      class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-gray-100 hover:shadow-xl transition-shadow duration-300 ease-in-out">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="#40B93C" viewBox="0 0 24 24" stroke-width="1.5"
+        stroke="currentColor" class="w-24 h-24 mt-16 ml-20 text-white">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+      </svg>
+      <p class="mt-14 ml-14">Add new product</p>
+    </div>
   </div>
+</div>
 
-  <h1 class="farm-name font-bold text-2xl text-center mt-3">
-    Enter Product Details
-  </h1>
-
-  <!----------------------------------------- modal  for adding products----------------------------------->
-  <div>
-    <section class="">
-      <div class="container py-4 h-full">
-        <div class="flex content-center items-center justify-center h-full">
-          <div class="w-full lg:w-4/12 px-4">
-            <div
-              class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-white border-0 border-transparent">
-              <div class="flex-auto px-12 py-4">
-                <!-- form -->
-
-                <form class="flex flex-col gap-4 mt-6 max-w-md">
-                  <div class="relative w-full mb-3">
-                    <input type="text" formControlName="productName"
-                      class="border  px-3 py-3 placeholder-green-500 text-black bg-white rounded-xl text-sm shadow focus:outline-none focus:ring w-full"
-                      placeholder="Product name" style="transition: all 0.15s ease 0s;" />
-                  </div>
-                  <div class="relative w-full mb-3">
-                    <label class="block uppercase text-black text-xs font-bold mb-2" for="grid-password"></label>
-                    <input type="text" formControlName="productDescription"
-                      class="border px-3 py-3 placeholder-green-500 text-black bg-white rounded-xl text-sm shadow focus:outline-none focus:ring w-full"
-                      placeholder="Product Description" style="transition: all 0.15s ease 0s;" />
-                  </div>
-                  <div class="relative w-full mb-3">
-                    <input type="number" formControlName="productPrice"
-                      class="border shadow-md px-3 py-3 placeholder-green-500 text-black bg-white rounded-xl text-sm shadow focus:outline-none focus:ring w-full"
-                      placeholder="Price" style="transition: all 0.15s ease 0s;" />
-                  </div>
-                  <div class="relative">
-                    <img src="" alt="product-Image" class="w-[300px] h-[158px] rounded-[20px]" />
-                    <svg uploadButton xmlns="http://www.w3.org/2000/svg" id="Add" x="0" y="0" version="1.1"
-                      viewBox="0 0 29 29" xml:space="preserve" style="
-                      width: 20%;
-                      height: 20%;
-                      position: absolute;
-                      top: 50%;
-                      left: 50%;
-                      transform: translate(-50%, -50%);
-                    ">
-                      <path
-                        d="M14.5 2C7.596 2 2 7.596 2 14.5S7.596 27 14.5 27 27 21.404 27 14.5 21.404 2 14.5 2zM21 15.5h-5.5V21a1 1 0 1 1-2 0v-5.5H8a1 1 0 1 1 0-2h5.5V8a1 1 0 1 1 2 0v5.5H21a1 1 0 1 1 0 2z"
-                        fill="#34a853" class="color000000 svgShape"></path>
-                    </svg>
-                  </div>
-                  <div class="text-center mt-4">
-                    <!-- <button 
-                      [disabled]="farmDescription?.invalid || farmLocation?.invalid || farmName?.invalid"
-                      *ngIf="farmId != null"
-                      class="btn btn-success border w-full text-green-500 border-green-500 bg-white text-sm font-bold uppercase px-12 py-3 rounded-2xl shadow outline-none focus:outline-none mr-1 mb-1 h-200px"
-                      type="button" (click)="addProduct()" style="transition: all 0.15s ease 0s;">
-                      Update farm
-                    </button> -->
-                    <button
-                      class="btn btn-success border w-full text-green-500 border-green-500 bg-white text-sm font-bold uppercase px-12 py-3 rounded-2xl shadow outline-none focus:outline-none mr-1 mb-1 h-200px"
-                      type="button" style="transition: all 0.15s ease 0s;">
-                      Add product
-                    </button>
-                  </div>
-                </form>
-              </div>
+<div id="add-product-popup-modal" tabindex="-1" style="background: hsla(0, 3%, 7%, 0.8)"
+  class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+  <section class="">
+    <div class="container py-4 h-full">
+      <div class="flex content-center items-center justify-center h-full">
+        <div class="w-full lg:w-4/12 px-4">
+          <div
+            class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-white border-0 border-transparent">
+            <div class="flex-auto px-12 py-4">
+              <form class="flex flex-col gap-4 mt-6 max-w-md">
+                <h1 class="farm-name font-bold t  ext-2xl text-center mt-3">
+                  Enter Product Details
+                </h1>
+                <div class="relative w-full mb-3">
+                  <input type="text" formControlName="productName"
+                    class="border  px-3 py-3 placeholder-green-500 text-black bg-white rounded-xl text-sm shadow focus:outline-none focus:ring w-full"
+                    placeholder="Product name" style="transition: all 0.15s ease 0s;" />
+                </div>
+                <div class="relative w-full mb-3">
+                  <label class="block uppercase text-black text-xs font-bold mb-2" for="grid-password"></label>
+                  <input type="text" formControlName="productDescription"
+                    class="border px-3 py-3 placeholder-green-500 text-black bg-white rounded-xl text-sm shadow focus:outline-none focus:ring w-full"
+                    placeholder="Product Description" style="transition: all 0.15s ease 0s;" />
+                </div>
+                <div class="relative w-full mb-3">
+                  <input type="number" formControlName="productPrice"
+                    class="border shadow-md px-3 py-3 placeholder-green-500 text-black bg-white rounded-xl text-sm shadow focus:outline-none focus:ring w-full"
+                    placeholder="Price" style="transition: all 0.15s ease 0s;" />
+                </div>
+                <div class="relative">
+                  <img src="" alt="product-Image" class="w-[300px] h-[158px] rounded-[20px]" />
+                  <!-- <svg uploadButton xmlns="http://www.w3.org/2000/svg" id="Add" x="0" y="0" version="1.1"
+                    viewBox="0 0 29 29" xml:space="preserve" style="
+                            width: 20%;
+                            height: 20%;
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                          ">
+                    <path
+                      d="M14.5 2C7.596 2 2 7.596 2 14.5S7.596 27 14.5 27 27 21.404 27 14.5 21.404 2 14.5 2zM21 15.5h-5.5V21a1 1 0 1 1-2 0v-5.5H8a1 1 0 1 1 0-2h5.5V8a1 1 0 1 1 2 0v5.5H21a1 1 0 1 1 0 2z"
+                      fill="#34a853" class="color000000 svgShape"></path>
+                  </svg> -->
+                </div>
+                <div class="text-center mt-4">
+                  <!-- <button 
+                            [disabled]="farmDescription?.invalid || farmLocation?.invalid || farmName?.invalid"
+                            *ngIf="farmId != null"
+                            class="btn btn-success border w-full text-green-500 border-green-500 bg-white text-sm font-bold uppercase px-12 py-3 rounded-2xl shadow outline-none focus:outline-none mr-1 mb-1 h-200px"
+                            type="button" (click)="addProduct()" style="transition: all 0.15s ease 0s;">
+                            Update farm
+                          </button> -->
+                  <button
+                    class="btn btn-success border w-full text-green-500 border-green-500 bg-white text-sm font-bold uppercase px-12 py-3 rounded-2xl shadow outline-none focus:outline-none mr-1 mb-1 h-200px"
+                    type="button" style="transition: all 0.15s ease 0s;">
+                    Add product
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  </div>
-
+    </div>
+  </section>
 </div>
