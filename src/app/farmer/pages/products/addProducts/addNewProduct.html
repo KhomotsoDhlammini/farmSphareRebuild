@@ -21,7 +21,7 @@
           <div
             class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-white border-0 border-transparent">
             <div class="flex-auto px-12 py-4">
-              <form class="flex flex-col gap-4 mt-6 max-w-md">
+              <form class="flex flex-col gap-4 mt-6 max-w-md" [formGroup]="form">
                 <h1 class="farm-name font-bold t  ext-2xl text-center mt-3">
                   Enter Product Details
                 </h1>
@@ -42,9 +42,12 @@
                     placeholder="Price" style="transition: all 0.15s ease 0s;" />
                 </div>
                 <div class="relative">
-                  <img src="" alt="product-Image" class="w-[300px] h-[158px] rounded-[20px]" />
-                  <!-- <svg uploadButton xmlns="http://www.w3.org/2000/svg" id="Add" x="0" y="0" version="1.1"
-                    viewBox="0 0 29 29" xml:space="preserve" style="
+                  <img 
+                  [src]="this.form.getRawValue().productImageURL ? this.form.getRawValue().productImageURL : this.placeholderImage"
+                  alt="product-Image" class="w-[300px] h-[158px] rounded-[20px]" />
+                  <svg uploadButton [uploadOptions]="farmOptions" [uploadComplete]="productImageOnComplete"
+                    xmlns="http://www.w3.org/2000/svg" id="Add" x="0" y="0" version="1.1" viewBox="0 0 29 29"
+                    xml:space="preserve" style="
                             width: 20%;
                             height: 20%;
                             position: absolute;
@@ -55,7 +58,7 @@
                     <path
                       d="M14.5 2C7.596 2 2 7.596 2 14.5S7.596 27 14.5 27 27 21.404 27 14.5 21.404 2 14.5 2zM21 15.5h-5.5V21a1 1 0 1 1-2 0v-5.5H8a1 1 0 1 1 0-2h5.5V8a1 1 0 1 1 2 0v5.5H21a1 1 0 1 1 0 2z"
                       fill="#34a853" class="color000000 svgShape"></path>
-                  </svg> -->
+                  </svg>
                 </div>
                 <div class="text-center mt-4">
                   <!-- <button 
@@ -67,7 +70,7 @@
                           </button> -->
                   <button
                     class="btn btn-success border w-full text-green-500 border-green-500 bg-white text-sm font-bold uppercase px-12 py-3 rounded-2xl shadow outline-none focus:outline-none mr-1 mb-1 h-200px"
-                    type="button" style="transition: all 0.15s ease 0s;">
+                    type="submit" style="transition: all 0.15s ease 0s;" (click)="onSubmit()">
                     Add product
                   </button>
                 </div>
