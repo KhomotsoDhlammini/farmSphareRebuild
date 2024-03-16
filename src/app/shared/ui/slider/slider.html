@@ -1,9 +1,27 @@
 <div class="w-full px-4 overflow-x-scroll flex gap-6 py-12 scroll-smooth bg-white mt-8" *ngIf="products.length > 0">
-  <div
-    class="w-64 h-52 snap-center rounded-2xl flex-none relative overflow-hidden shadow-2xl hover:scale-110 ease-in-out duration-300 flex justify-center items-center"
-    *ngIf="userService.getUserSignal()?.role === 'FARMER'">
-
-    <button class='px-6 pt-3 pb-4 text-white font-bold text-4xl bg-green-600 rounded-full shadow-lg'>+</button>
+  <div class="products flex flex-nowrap"  *ngIf="userService.getUserSignal()?.role === 'FARMER'">
+    <div class="inline-block">
+      <div
+        class="w-64 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-gray-100 hover:shadow-xl transition-shadow duration-300 ease-in-out"
+       
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="#40B93C"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-24 h-24 mt-16 ml-20 text-white"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+          />
+        </svg>
+        <p class="mt-14 ml-14">Add new product</p>
+      </div>
+    </div>
   </div>
   <share-product *ngFor="let product of products" [product]='product' [showCardButton]='showCardButton' />
 </div>

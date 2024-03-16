@@ -32,10 +32,10 @@ export class RegisterPage {
   onSubmit() {
     this.authService.onRegisterFn(this.form.getRawValue()).subscribe(
       (res) => {
-        const {id, username, role, phoneNumber, userImageURL, token} = res
+        const {authenticationId, username, role, phoneNumber, userImageURL, token} = res
         localStorage.setItem('token', token)
         this.userService.setUserSignal({
-          id,
+          id: authenticationId,
           username,
           role,
           phoneNumber,
