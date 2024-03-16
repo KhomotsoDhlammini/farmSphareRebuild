@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { NavigateService } from "src/app/shared/services/navigate.service";
 
 @Component({
     selector: 'farmer-addNewFarm',
@@ -12,7 +13,9 @@ export class AddNewFarm {
     /**
      *
      */
-    constructor() {
+    constructor( private navigate: NavigateService) {
+
+        
         
     }
 }
