@@ -1,10 +1,10 @@
-import {NgIf} from '@angular/common'
-import {Component, Input, OnInit} from '@angular/core'
+import { NgIf } from '@angular/common'
+import { Component, Input, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import {CartService} from 'src/app/shared/services/cart.service'
+import { CartService } from 'src/app/shared/services/cart.service'
 import { AlertService } from 'src/app/shared/services/alert.service'
 import { ProductService } from 'src/app/shared/services/product.service'
-import {ProductInterface} from 'src/app/shared/types/product.interface'
+import { ProductInterface } from 'src/app/shared/types/product.interface'
 
 @Component({
   selector: 'share-product',
@@ -12,18 +12,20 @@ import {ProductInterface} from 'src/app/shared/types/product.interface'
   standalone: true,
   imports: [NgIf],
 })
-export class  Product {
+export class Product {
   @Input() product!: ProductInterface
-  @Input() showCardButton: boolean = true
-  
+  @Input() showCardButton: boolean = true;
+  @Input() farmID!: string
+  @Input() farmerID!: string
+
   constructor(
     private cartService: CartService,
     private alert: AlertService,
     private productService: ProductService
-  ) {}
+  ) { }
 
   addToCart() {
-    this.cartService.addToCartSignal(this.product);
+    this.cartService.addToCartSignal(this.product, this.farmID, this.farmerID);
   }
 
   deleteItem(productId: any) {

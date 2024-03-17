@@ -4,15 +4,20 @@ import {
   computed,
   signal,
 } from '@angular/core'
-import {ProductCartInterface} from '../../client/types/productCart.interface'
-import {ProductInterface} from 'src/app/shared/types/product.interface'
-import {AlertService} from 'src/app/shared/services/alert.service'
+import { CartFarmDetails, ProductCartInterface } from '../../client/types/productCart.interface'
+import { ProductInterface } from 'src/app/shared/types/product.interface'
+import { AlertService } from 'src/app/shared/services/alert.service'
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   private cartSignal = signal<ProductCartInterface[]>([])
+  private cartFarmSignal = signal<CartFarmDetails>({} as CartFarmDetails)
+
+  //constants keys
+  private cartFarmConst: string = "cartFarm";
+  private cartConst: string = "cart";
 
   totalPrice: Signal<number> = computed(() =>
     this.cartSignal().reduce(
@@ -21,11 +26,16 @@ export class CartService {
     )
   )
 
-  constructor(private alert: AlertService) {}
+  constructor(private alert: AlertService) { }
 
   // return all product from the cart
   getCartSignal(): ProductCartInterface[] {
     return this.cartSignal()
+  }
+
+  // return all product from the cart
+  getCartFarmSignal(): CartFarmDetails {
+    return this.cartFarmSignal();
   }
 
   // check if product exists in the cart
@@ -42,14 +52,15 @@ export class CartService {
   }
 
   // add to a cart
-  addToCartSignal(product: ProductInterface) {
+  addToCartSignal(product: ProductInterface, farmID: string, farmerID: string) {
     const id: string = Date.now().toString()
     const count = 1
     let cartData = this.getCartSignal()
 
     if (!this.isProductExist(product.productID)) {
-      cartData = [...cartData, {id, count, product}]
+      cartData = [...cartData, { id, count, product }]
       this.cartSignal.set(cartData)
+      this.cartFarmSignal.set({ farmerID: +farmerID, farmID: +farmID });  // to keep track of the farm details
       this.alert.success(`${product.productName} added to cart`)
       this.saveCartToStorage()
       return
@@ -62,7 +73,7 @@ export class CartService {
 
   onIncrementItem(id: string) {
     let cartData = this.getCartSignal().map((p) =>
-      p.id === id ? {...p, count: p.count + 1} : {...p}
+      p.id === id ? { ...p, count: p.count + 1 } : { ...p }
     )
 
     this.cartSignal.set(cartData)
@@ -80,7 +91,7 @@ export class CartService {
     }
 
     let cartData = this.getCartSignal().map((p) =>
-      p.id === id ? {...p, count: p.count - 1} : {...p}
+      p.id === id ? { ...p, count: p.count - 1 } : { ...p }
     )
 
     this.cartSignal.set(cartData)
@@ -97,10 +108,21 @@ export class CartService {
     this.saveCartToStorage()
   }
 
+  getCardFarmFromStorage() {
+    if (localStorage.getItem(this.cartFarmConst)) {
+      const data = JSON.parse(localStorage.getItem(this.cartFarmConst) || '') as CartFarmDetails;
+
+      // add back to signal
+      if(data) {
+        this.cartFarmSignal.set(data);
+      }
+    }
+  }
+
   getCardFromStorage() {
-    if (localStorage.getItem('cart')) {
+    if (localStorage.getItem(this.cartConst)) {
       const dataFromStorage: ProductCartInterface[] = JSON.parse(
-        localStorage.getItem('cart') || ''
+        localStorage.getItem(this.cartConst) || ''
       ) as ProductCartInterface[]
       if (dataFromStorage.length > 0) {
         this.cartSignal.set(dataFromStorage)
@@ -109,11 +131,14 @@ export class CartService {
   }
 
   saveCartToStorage() {
-    localStorage.setItem('cart', JSON.stringify(this.getCartSignal()))
+    localStorage.setItem(this.cartConst, JSON.stringify(this.getCartSignal()));
+    localStorage.setItem(this.cartFarmConst, JSON.stringify(this.cartFarmSignal()))
   }
 
   clearCart() {
-    localStorage.removeItem('cart')
+    localStorage.removeItem(this.cartConst)
+    localStorage.removeItem(this.cartFarmConst)
     this.cartSignal.set([])
+    this.cartFarmSignal.set({} as CartFarmDetails)
   }
 }

@@ -15,6 +15,7 @@ import { AddProductPage } from 'src/app/farmer/pages/products/addProducts/addPro
 })
 export class Slider implements OnInit {
   @Input() farmID!: string
+  @Input() farmerID!: string
   products: ProductInterface[] = []
 
   @Input() showCardButton: boolean = true

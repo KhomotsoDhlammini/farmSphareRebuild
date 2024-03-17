@@ -6,6 +6,6 @@
   <addNewProduct></addNewProduct>
 
   <ng-container *ngIf="products.length > 0">
-    <share-product *ngFor="let product of products" [product]='product' [showCardButton]='showCardButton' />
+    <share-product *ngFor="let product of products" [product]='product' [showCardButton]='showCardButton' [farmID]="farmID" [farmerID]="farmerID" />
   </ng-container>
 </div>

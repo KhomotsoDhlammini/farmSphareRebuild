@@ -41,7 +41,8 @@ export class ClientLayout implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cardService.getCardFromStorage()
+    this.cardService.getCardFromStorage();
+    this.cardService.getCardFarmFromStorage();
   }
 
   toggleMenu(name: string = 'toggle') {
