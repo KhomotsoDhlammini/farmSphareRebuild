@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core'
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router'
 import {Navbar} from '../../ui/navbar/navbar'
 import {Footer} from 'src/app/shared/ui/footer/footer'
-import {CartService} from '../../services/cart.service'
+import {CartService} from '../../../shared/services/cart.service'
 import {UserService} from 'src/app/shared/services/user.service'
 
 @Component({

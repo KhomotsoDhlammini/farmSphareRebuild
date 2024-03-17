@@ -1,7 +1,7 @@
 import {NgIf} from '@angular/common'
 import {Component, Input, OnInit} from '@angular/core'
 import { Router } from '@angular/router'
-import {CartService} from 'src/app/client/services/cart.service'
+import {CartService} from 'src/app/shared/services/cart.service'
 import { AlertService } from 'src/app/shared/services/alert.service'
 import { ProductService } from 'src/app/shared/services/product.service'
 import {ProductInterface} from 'src/app/shared/types/product.interface'

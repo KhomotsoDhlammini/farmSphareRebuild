@@ -4,7 +4,7 @@ import {
   computed,
   signal,
 } from '@angular/core'
-import {ProductCartInterface} from '../types/productCart.interface'
+import {ProductCartInterface} from '../../client/types/productCart.interface'
 import {ProductInterface} from 'src/app/shared/types/product.interface'
 import {AlertService} from 'src/app/shared/services/alert.service'
 

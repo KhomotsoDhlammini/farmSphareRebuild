@@ -4,6 +4,7 @@ import {Desktop} from './shared/ui/desktop/desktop'
 import {CommonModule, NgIf} from '@angular/common'
 import {UserService} from './shared/services/user.service'
 import {NavigateService} from './shared/services/navigate.service'
+import { SpinnerComponent } from './shared/ui/spinner/spinner.component'
 
 
 @Component({
@@ -15,15 +16,22 @@ import {NavigateService} from './shared/services/navigate.service'
     RouterOutlet,
      Desktop, 
      CommonModule, 
-     NgIf,],
+     NgIf,
+     SpinnerComponent
+    ],
 })
 export class AppComponent implements OnInit {
   isMobile: boolean = window.innerWidth < 700 ? true : false
+  isLoading: boolean = true;
 
   constructor(
     private userService: UserService,
     private navigate: NavigateService
-  ) {}
+  ) {
+    setTimeout (()=> {
+      this.isLoading= false;
+    }, 8000)
+  }
 
   ngOnInit(): void {
     if (localStorage.getItem('user')) {

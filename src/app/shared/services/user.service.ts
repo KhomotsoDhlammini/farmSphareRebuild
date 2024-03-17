@@ -1,7 +1,7 @@
 import {Injectable, signal} from '@angular/core'
 import {UserInterface} from '../types/user.interface'
 import {NavigateService} from './navigate.service'
-import {CartService} from 'src/app/client/services/cart.service'
+import {CartService} from 'src/app/shared/services/cart.service'
 
 @Injectable({
   providedIn: 'root',

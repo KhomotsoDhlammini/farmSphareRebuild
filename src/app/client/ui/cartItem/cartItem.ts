@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core'
 import {ProductCartInterface} from '../../types/productCart.interface'
 import {NgIf} from '@angular/common'
-import {CartService} from '../../services/cart.service'
+import {CartService} from '../../../shared/services/cart.service'
 
 @Component({
   selector: 'client-card-item',
