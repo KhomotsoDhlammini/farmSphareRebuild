@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -5,7 +6,7 @@ import { Component, Input } from '@angular/core';
   templateUrl: './spinner.component.html',
   styleUrls: ['./spinner.component.scss'],
   standalone: true,
-  imports: [],
+  imports: [NgIf],
 })
 export class SpinnerComponent {
 

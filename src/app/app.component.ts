@@ -28,9 +28,7 @@ export class AppComponent implements OnInit {
     private userService: UserService,
     private navigate: NavigateService
   ) {
-    setTimeout (()=> {
-      this.isLoading= false;
-    }, 8000)
+   
   }
 
   ngOnInit(): void {
@@ -40,4 +38,10 @@ export class AppComponent implements OnInit {
       this.navigate.to('/public/login')
     }
   }
-}
+
+  spinnerLoading() {
+    this.isLoading = true;
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 8000);
+  }}
