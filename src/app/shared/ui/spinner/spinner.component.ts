@@ -1,5 +1,6 @@
 import { NgIf } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { SpinnerService } from '../../services/spinner.service';
 
 @Component({
   selector: 'app-spinner',
@@ -8,8 +9,22 @@ import { Component, Input } from '@angular/core';
   standalone: true,
   imports: [NgIf],
 })
-export class SpinnerComponent {
+export class SpinnerComponent implements OnInit {
 
-  @Input () isLoading : boolean = false;
+  constructor(public spinnerService: SpinnerService) {    
+  }
 
+  ngOnInit(): void {
+     // Subscribe to the counter observable
+    this.spinnerService.isLoading$.subscribe(
+      value => {
+        this.isLoading = value; // Update the counter value
+      },
+      error => {
+        console.error('Error:', error);
+      }
+    );
+  }
+
+  isLoading : boolean = false;
 }

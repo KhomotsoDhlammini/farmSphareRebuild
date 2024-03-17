@@ -4,6 +4,7 @@ import { FarmCard } from '../../ui/farmCard/farmCard';
 import { FarmService } from 'src/app/shared/services/farm.service';
 import { FarmInterface } from 'src/app/shared/types/farm.interface';
 import { SpinnerComponent } from 'src/app/shared/ui/spinner/spinner.component';
+import { SpinnerService } from 'src/app/shared/services/spinner.service';
 
 @Component({
   selector: 'client-homePage',
@@ -14,27 +15,28 @@ import { SpinnerComponent } from 'src/app/shared/ui/spinner/spinner.component';
 })
 export class HomePage implements OnInit {
   farms: FarmInterface[] = [];
-  isLoading: boolean = false;
 
   constructor(
+    private spinnerService: SpinnerService,
     private farmService: FarmService,
     private changeDetectorRef: ChangeDetectorRef,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getUserLocation();
   }
 
   getUserLocation() {
+    this.spinnerService.start();
     this.farmService.getUserLocation().subscribe(
       (userCoordinates: any) => {
-        this.isLoading = true;
+        this.spinnerService.start();
         console.log('User Coordinates:', userCoordinates);
         this.getFarms(userCoordinates);
       },
       (error: any) => {
+        this.spinnerService.stop();
         console.error('Error getting user location:', error);
-        this.isLoading = false; // Set isLoading to false on error
       }
     );
   }
@@ -47,10 +49,11 @@ export class HomePage implements OnInit {
         this.farms = filteredFarms;
       },
       (error: any) => {
+        this.spinnerService.stop();
         console.error('Error getting filtered farms:', error);
       }
     ).add(() => {
-      this.isLoading = false; // Set isLoading to false after the request completes (success or error)
+      this.spinnerService.stop();
       this.changeDetectorRef.detectChanges();
     });
   }
