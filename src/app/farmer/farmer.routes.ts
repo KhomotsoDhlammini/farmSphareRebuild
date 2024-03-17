@@ -5,6 +5,7 @@ import {OrdersPage} from './pages/orders/orders'
 import {NotificationsPage} from './pages/notifications/notifications'
 import { FarmDetailsPage } from './pages/farmDetails/farmDetails'
 import { AddNewFarm } from './pages/addNewFarm/addNewFarm'
+import { ViewOrderInfoPage } from './pages/view-order-info/checkout/viewOrderInfo'
 
 export const farmerRoutes: Route[] = [
   {
@@ -31,6 +32,9 @@ export const farmerRoutes: Route[] = [
         path: 'addnewfarm',
         component: AddNewFarm,
       },
+      {
+        path: 'viewOrderInfo',
+        component: ViewOrderInfoPage  }
     ],
   },
 ]

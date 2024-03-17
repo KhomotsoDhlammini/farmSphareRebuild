@@ -2,9 +2,9 @@
 
     <shared-back-button />
     <div class='text-3xl text-center'>Thanks for your Order</div>
-    <div class="h-32 shadow-md rounded-2xl p-2 flex items-center gap-12">
+    <div class="h-32 shadow-md rounded-2xl p-2 flex items-center gap-6">
         <div
-            class='shadow w-28 h-28 object-cover rounded-full border-8 border-green-300 bg-green-100 flex justify-center items-center text-[4rem] uppercase'>
+            class='shadow w-20 h-20 object-cover rounded-full border-8 border-green-300 bg-green-100 flex justify-center items-center text-[2rem] uppercase'>
             {{userService.getUserSignal()?.username?.slice(0, 1)}}
         </div>
         <div>
@@ -28,7 +28,7 @@
                     <div class='font-bold'>Order placed</div>
                     <div class='font-thin'>{{this.orderDetails.orderDate | date:"MMM dd, yyyy"}}</div>
                 </div>
-                <div *ngIf="this.orderDetails.orderStatus == 'accepted'">
+                <div *ngIf="this.orderDetails.orderStatus == 'Accepted'">
                     <div class='font-bold'>Ready for collection</div>
                     <div class='font-thin'>Collect your order</div>
                 </div>

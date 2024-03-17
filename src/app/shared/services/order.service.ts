@@ -43,4 +43,15 @@ export class OrderService {
       })
     );
   }
+
+  getOrderListByFarmerId(farmerID:string): Observable<any> {
+    const SERVER = environment.SERVER_URL;
+  
+    // Send a GET request to get customer orders
+    return this.http.get<OrderDetails>(`${SERVER}/orders/farmer/${farmerID}`).pipe(
+      map(res => {
+        return res;
+      })
+    );
+  }
 }

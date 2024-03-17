@@ -27,7 +27,7 @@ export class CartPage {
       consumerID: this.userService.getUserSignal()?.id,
       farmerID: this.cartService.getCartFarmSignal().farmerID,
       farmID: this.cartService.getCartFarmSignal().farmID,
-      orderStatus: "new",
+      orderStatus: "Pending",
       orderPrice: this.cartService.totalPrice(),
       orderDate: new Date(),
       orderProductList: []   // initialize
