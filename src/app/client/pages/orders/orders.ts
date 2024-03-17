@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common'
-import {Component} from '@angular/core'
+import {Component, Input} from '@angular/core'
 
 @Component({
   selector: 'client-orderPage',
@@ -8,4 +8,8 @@ import {Component} from '@angular/core'
   standalone: true,
   imports: [CommonModule],
 })
-export class OrdersPage {}
+export class OrdersPage {
+  @Input() orders: any[] = [
+
+  ];
+}
