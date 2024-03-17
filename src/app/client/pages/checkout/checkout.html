@@ -1,9 +1,7 @@
 <div class="checkoutPage h-full flex flex-col relative px-4 pt-2 pb-8 gap-4">
 
     <shared-back-button />
-
     <div class='text-3xl text-center'>Thanks for your Order</div>
-
     <div class="h-32 shadow-md rounded-2xl p-2 flex items-center gap-12">
         <div
             class='shadow w-28 h-28 object-cover rounded-full border-8 border-green-300 bg-green-100 flex justify-center items-center text-[4rem] uppercase'>
@@ -12,7 +10,8 @@
         <div>
             <div class='uppercase'>{{userService.getUserSignal()?.username}}</div>
             <div class='font-thin'>
-                Total amount: <span class='font-bold ml-4' *ngIf="this.orderDetails.orderPrice">R{{this.orderDetails.orderPrice.toFixed(2)}}</span>
+                Total amount: <span class='font-bold ml-4'
+                    *ngIf="this.orderDetails.orderPrice">R{{this.orderDetails.orderPrice.toFixed(2)}}</span>
             </div>
         </div>
     </div>
@@ -25,7 +24,7 @@
     <div class="flex-1 flex flex-col w-full bg-slate-200 relative p-4">
         <div class="flex-1 py-8">
             <div class='h-auto pl-4 border-l-2 border-black flex flex-col gap-8 rounded'>
-                <div >
+                <div>
                     <div class='font-bold'>Order placed</div>
                     <div class='font-thin'>{{this.orderDetails.orderDate | date:"MMM dd, yyyy"}}</div>
                 </div>
@@ -36,7 +35,7 @@
             </div>
         </div>
 
-        <button class="w-full bg-black/90 text-white rounded-full py-3"
-            (click)="navigate.to('/client/orders')">Go to Orders</button>
+        <button class="w-full bg-black/90 text-white rounded-full py-3" (click)="navigate.to('/client/orders')">Go to
+            Orders</button>
     </div>
 </div>
