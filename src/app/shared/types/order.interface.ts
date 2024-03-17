@@ -29,3 +29,8 @@ export interface OrderDetails {
 }
 
 type OrderStatusType = "Pending" | "Accepted" | "Declined"
+
+export interface OrderStatusRequest {
+  orderID : number
+  orderStatus: OrderStatusType
+}
