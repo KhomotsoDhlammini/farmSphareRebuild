@@ -12,7 +12,7 @@
         <div>
             <div class='uppercase'>{{userService.getUserSignal()?.username}}</div>
             <div class='font-thin'>
-                Total amount: <span class='font-bold ml-4'>R{{this.orderDetails.orderPrice?.toFixed(2)}}</span>
+                Total amount: <span class='font-bold ml-4' *ngIf="this.orderDetails.orderPrice">R{{this.orderDetails.orderPrice.toFixed(2)}}</span>
             </div>
         </div>
     </div>

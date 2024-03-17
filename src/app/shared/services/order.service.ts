@@ -2,7 +2,7 @@ import {HttpClient} from '@angular/common/http'
 import {Injectable} from '@angular/core'
 import {Observable, map} from 'rxjs'
 import {environment} from 'src/environments/environment.development'
-import { OrderRequest } from '../types/order.interface'
+import { OrderDetails, OrderRequest } from '../types/order.interface'
 
 @Injectable({
   providedIn: 'root',
@@ -25,8 +25,19 @@ export class OrderService {
   getOrderById(orderId:string): Observable<any> {
     const SERVER = environment.SERVER_URL;
   
-    // Send a GET request to create a new order
-    return this.http.get<OrderRequest>(`${SERVER}/orders/${orderId}`).pipe(
+    // Send a GET request to order by ID
+    return this.http.get<OrderDetails>(`${SERVER}/orders/${orderId}`).pipe(
+      map(res => {
+        return res;
+      })
+    );
+  }
+
+  getOrderListByCustomerId(customerID:string): Observable<any> {
+    const SERVER = environment.SERVER_URL;
+  
+    // Send a GET request to get customer orders
+    return this.http.get<OrderDetails>(`${SERVER}/orders/customer/${customerID}`).pipe(
       map(res => {
         return res;
       })
