@@ -43,4 +43,31 @@ export class FarmService {
       })
     );
   }
+
+
+  getUserLocation(): Observable<any> {
+    // Use Geolocation API to get user's location
+    return new Observable(observer => {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const userCoordinates = {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+          };
+          observer.next(userCoordinates);
+          observer.complete();
+        },
+        (error) => observer.error(error)
+      );
+    });
+  }
+
+  getFarmsWithinRadius(userCoordinates: any): Observable<any> {
+    const SERVER = environment.SERVER_URL;
+    // Send user coordinates and radius to the backend and get filtered farms
+    return this.http.post(`${SERVER}/farm/filtered`, userCoordinates);
+  }
+
+
+  
 }

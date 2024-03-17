@@ -31,6 +31,8 @@ export class  Product {
       () => {
         // Handle success, maybe show an alert or update the product list
         this.alert.success('Product deleted successfully.');
+        console.log('sucess');
+        window.location.reload();
       },
       (error) => {
         // Handle error, show an alert or log it

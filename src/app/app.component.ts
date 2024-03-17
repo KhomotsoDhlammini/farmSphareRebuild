@@ -5,12 +5,17 @@ import {CommonModule, NgIf} from '@angular/common'
 import {UserService} from './shared/services/user.service'
 import {NavigateService} from './shared/services/navigate.service'
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [RouterOutlet, Desktop, CommonModule, NgIf],
+  imports: [
+    RouterOutlet,
+     Desktop, 
+     CommonModule, 
+     NgIf,],
 })
 export class AppComponent implements OnInit {
   isMobile: boolean = window.innerWidth < 700 ? true : false

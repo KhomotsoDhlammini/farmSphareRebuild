@@ -22,6 +22,7 @@
     "@bytescale/upload-widget-angular": "^9.14.0",
     "bootstrap-icons": "^1.11.3",
     "flowbite": "^2.3.0",
+    "ng-http-loader": "^15.0.0",
     "ngx-toastr": "^18.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
