@@ -3,7 +3,7 @@ export interface OrderRequest {
   consumerID : number
   farmerID: number
   farmID: number
-  orderStatus: "new" | "accepted" | "completed"
+  orderStatus: OrderStatusType
   orderPrice: number
   orderDate: Date
   orderProductList : Array<OrderProduct>
@@ -17,3 +17,15 @@ export interface OrderProduct {
   productPrice: number
   count: number
 }
+
+export interface OrderDetails {
+  orderID : number
+  consumerID : number
+  farmerID: number
+  farmID: number
+  orderStatus: OrderStatusType
+  orderPrice: number
+  orderDate: Date
+}
+
+type OrderStatusType = "new" | "accepted" | "completed"

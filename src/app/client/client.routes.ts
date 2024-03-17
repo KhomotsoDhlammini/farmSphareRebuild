@@ -29,7 +29,7 @@ export const clientRoutes: Route[] = [
         component: NotificationsPage,
       },
       {
-        path: 'checkout',
+        path: 'checkout/:orderId',
         component: CheckoutPage,
       },
       {

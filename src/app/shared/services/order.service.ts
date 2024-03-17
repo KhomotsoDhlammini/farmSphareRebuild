@@ -21,4 +21,15 @@ export class OrderService {
       })
     );
   }
+
+  getOrderById(orderId:string): Observable<any> {
+    const SERVER = environment.SERVER_URL;
+  
+    // Send a GET request to create a new order
+    return this.http.get<OrderRequest>(`${SERVER}/orders/${orderId}`).pipe(
+      map(res => {
+        return res;
+      })
+    );
+  }
 }

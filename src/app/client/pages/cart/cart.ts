@@ -7,7 +7,6 @@ import { BackButton } from 'src/app/shared/ui/backButton'
 import { OrderService } from 'src/app/shared/services/order.service'
 import { OrderProduct, OrderRequest } from 'src/app/shared/types/order.interface'
 import { UserService } from 'src/app/shared/services/user.service'
-import { catchError } from 'rxjs'
 import { AlertService } from 'src/app/shared/services/alert.service'
 
 @Component({
@@ -47,15 +46,17 @@ export class CartPage {
       request.orderProductList.push(orderProduct);
     }
 
-    console.log("request", request)
-
     // SEND REQUEST
     this.orderService.createNewOrder(request).subscribe(
       (response) => {
         // Handle success, maybe show a success message or redirect to another page
         this.alert.success('Succefully added a order');
 
+        // empty cart
+        this.cartService.clearCart();
+
         // NAVIGATE TO order SENT SCREEN
+        this.navigateService.to("/client/checkout/"+response);
       },
       (error) => {
         console.log(error)
