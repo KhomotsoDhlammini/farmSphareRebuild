@@ -23,12 +23,12 @@ export class OrdersPage implements OnInit {
 
   ngOnInit(): void {
     const farmerId = this.userService.getUserSignal()?.id;
-    this.orderService.getOrderListByCustomerId(farmerId + "").subscribe(
+    this.orderService.getOrderListByFarmerId(farmerId + "").subscribe(
       (orderList: OrderDetails[]) => {
 
         console.log("orders List:"+orderList);
         this.ordersList = orderList;
-        
+
         this.alert.success('Successfully fetched orders')
       },
       (error) => {

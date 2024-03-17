@@ -33,8 +33,9 @@ export const farmerRoutes: Route[] = [
         component: AddNewFarm,
       },
       {
-        path: 'viewOrderInfo',
-        component: ViewOrderInfoPage  }
+        path: 'viewOrderInfo/:orderId',
+        component: ViewOrderInfoPage 
+       }
     ],
   },
 ]

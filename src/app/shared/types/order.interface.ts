@@ -28,4 +28,4 @@ export interface OrderDetails {
   orderDate: Date
 }
 
-type OrderStatusType = "Pending" | "Accepted" | "completed"
+type OrderStatusType = "Pending" | "Accepted" | "Declined"

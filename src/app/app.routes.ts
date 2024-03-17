@@ -20,5 +20,5 @@ export const appRoutes: Route[] = [
     path: '',
     redirectTo: 'public/login',
     pathMatch: 'full',
-  },
+  }
 ]

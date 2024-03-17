@@ -34,7 +34,7 @@ export class CheckoutPage implements OnInit {
             },
             (error) => {
                 console.log(error)
-                this.alert.error('Error creating a order')
+                this.alert.error('Error getting an order');
             }
         );
     }

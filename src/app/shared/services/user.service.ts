@@ -2,6 +2,9 @@ import {Injectable, signal} from '@angular/core'
 import {UserInterface} from '../types/user.interface'
 import {NavigateService} from './navigate.service'
 import {CartService} from 'src/app/shared/services/cart.service'
+import { environment } from 'src/environments/environment.development'
+import { Observable, map } from 'rxjs'
+import { HttpClient } from '@angular/common/http'
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +14,8 @@ export class UserService {
 
   constructor(
     private navigate: NavigateService,
-    private cartService: CartService
+    private cartService: CartService,
+    private http: HttpClient
   ) {}
 
   // set user data in the state
@@ -46,5 +50,16 @@ export class UserService {
     this.cartService.clearCart()
     localStorage.clear()
     this.navigate.to('/public/login')
+  }
+
+  getUserById(userId:number): Observable<any> {
+    const SERVER = environment.SERVER_URL;
+  
+    // Send a GET request to order by ID
+    return this.http.get<UserInterface>(`${SERVER}/user/${userId}`).pipe(
+      map(res => {
+        return res;
+      })
+    );
   }
 }
